@@ -6,9 +6,12 @@ public abstract class Player {
     private ArrayList<Card> cards = new ArrayList<>();
     private Random random = new Random();
     private static int BORDER_SCORE = 21;
-    boolean isBust = false;
-    boolean isBrackJack = false;
+    private boolean isBust = false;
+    private boolean isBrackJack = false;
     
+    /*
+     * デッキの生成
+     */
     public void draw(ArrayList<Card> deck) {
         int r = random.nextInt(52);
         cards.add(deck.get(r));
@@ -27,6 +30,9 @@ public abstract class Player {
         return cards;
     }
 
+    /*
+     * 引いたカードのスコアを表示
+     */
     public int getScore(){
         int score = 0;
         int aceCardCound = 0;
@@ -48,5 +54,17 @@ public abstract class Player {
             }
         }
         return score;
+    }
+    public boolean isBrackJack() {
+        return isBrackJack;
+    }
+    public boolean isBust() {
+        return isBust;
+    }
+    public void setBrackJack(boolean isBrackJack) {
+        this.isBrackJack = isBrackJack;
+    }
+    public void setBust(boolean isBust) {
+        this.isBust = isBust;
     }
 }
