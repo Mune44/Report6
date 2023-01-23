@@ -13,7 +13,7 @@ public abstract class Player {
      * デッキの生成
      */
     public void draw(ArrayList<Card> deck) {
-        int r = random.nextInt(52);
+        int r = random.nextInt(deck.size());
         cards.add(deck.get(r));
         deck.remove(r);
     }
@@ -35,19 +35,20 @@ public abstract class Player {
      */
     public int getScore(){
         int score = 0;
-        int aceCardCound = 0;
+        int aceCardCount = 0;
         for(Card c : cards){
             int card_num = c.getNumber();
             if(card_num >= 10){
                 card_num = 10;
             }else if(card_num == 1){
-                aceCardCound += 1;
+                aceCardCount += 1;
+                card_num = 0;
             }
             score += card_num;
         }
 
-        for(int i=0;i<aceCardCound;i++) {
-            if(i == 0 && score + 11 <= BORDER_SCORE) {
+        for(int i=0;i<aceCardCount;i++) {
+            if(score + 11 <= BORDER_SCORE) {
                 score += 11;
             }else{
                 score += 1;

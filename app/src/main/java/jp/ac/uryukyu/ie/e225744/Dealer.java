@@ -9,8 +9,8 @@ public class Dealer extends Player{
     public void act(ArrayList<Card> deck) {
         draw(deck);
         draw(deck);
-        showCards();
         if (getScore() == 21){
+            showCards();
             setBrackJack(true);
             return;
         }
@@ -19,10 +19,11 @@ public class Dealer extends Player{
          */
         while(getScore() < 17){
             draw(deck);
-            showCards();
             if(getScore()>21){
                 setBust(true);
             }
         }
+        showCards();
+        System.out.println("スコア:" + getScore());
     }
 }

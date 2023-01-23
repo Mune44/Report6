@@ -16,23 +16,26 @@ public class User extends Player {
         draw(deck);
         draw(deck);
         showCards();
+        System.out.println("スコア:" + getScore());
         /*
          * ブラックジャックかどうかの判断
          */
         if (getScore() == 21){
             setBrackJack(true);
+            return;
         }
 
         while(true){
-            System.out.println("もう一度退きますか？(yes/no)");
+            System.out.println("もう一度引きますか？(y/n)");
             String imput = sc.nextLine();
 
             /*
              * もう一度引くかどうかの入力後の処理
              */
-            if(imput.equals("yes")){
+            if(imput.equals("y")){
                 draw(deck);
                 showCards();
+                System.out.println("スコア:" + getScore());
                 if(getScore() > 21){
                     setBust(true);
                     break;
