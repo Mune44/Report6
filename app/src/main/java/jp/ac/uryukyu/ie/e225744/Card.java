@@ -4,7 +4,7 @@ public class Card {
     private int number;
     private String suit;
 
-    Card(int number, String suit) {
+    public Card(int number, String suit) {
         this.number = number;
         this.suit = suit;
     }
@@ -18,6 +18,9 @@ public class Card {
 
     public String getCard() {
         String num;
+        /*
+         * 1,11,12,13をトランプのマークに変換する
+         */
         switch (this.number){
             case 1:
                 num = "A";
@@ -34,6 +37,9 @@ public class Card {
             default:
                 num = String.valueOf(this.number);
         }
+        /*
+         * マーク＋数で表記する
+         */
         return suit + num;
     }
 }

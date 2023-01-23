@@ -8,7 +8,10 @@ public class GameMaster {
 
     private Player user;
     private Player dealer;
-
+    /*
+     * トランプの山札を作る
+     * jockerは含めない
+     */
     public GameMaster() {
         String[] suits = {"♠︎","❤︎","♣️","♦︎"};
         for(String suit: suits) {
@@ -20,6 +23,10 @@ public class GameMaster {
         user = new User();
         dealer = new Dealer();
     }
+
+    public ArrayList<Card> getDeck() {
+        return deck;
+    } 
 
     public void start(){
         /*
@@ -33,43 +40,33 @@ public class GameMaster {
         System.out.println("ディーラーのターンです");
         dealer.act(deck);
 
+        /*
+         * 勝敗の判定
+         */
         if(user.isBrackJack() == true){
             System.out.println("ブラックジャック");
             System.out.println("プレイヤーの勝ちです");
+
         }else if(user.isBust() == true){
             System.out.println("Bustしました");
             System.out.println("ディーラーの勝ちです");
+
         }else if(dealer.isBrackJack() == true){
             System.out.println("ブラックジャック");
             System.out.println("ディーラーの勝ちです");
+
         }else if(dealer.isBust() == true){
             System.out.println("Bustしました");
             System.out.println("プレイヤーの勝ちです");
+
         }else if(user.getScore() - dealer.getScore() > 0 ){
             System.out.println("プレイヤーの勝ちです");
+
         }else  if(user.getScore() - dealer.getScore() < 0 ){
             System.out.println("ディーラーの勝ちです");
+
         }else{
             System.out.println("引き分け");
         }
-
-
-
-    }
-
-    public ArrayList<Card> getDeck() {
-        return deck;
-    }
-
-    public static void main(String[] args) {
-        GameMaster gm = new GameMaster();
-        int count = 0;
-        for(Card c: gm.getDeck()){
-            System.out.println(c.getCard());
-            count += 1;
-        }
-
-        System.out.println(count);
-
-    }
+    }   
 }

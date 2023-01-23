@@ -9,6 +9,9 @@ public class Dealer extends Player{
     public void act(ArrayList<Card> deck) {
         draw(deck);
         draw(deck);
+        /*
+         * 初めの2枚で21になったらブラックジャック
+         */
         if (getScore() == 21){
             showCards();
             setBrackJack(true);

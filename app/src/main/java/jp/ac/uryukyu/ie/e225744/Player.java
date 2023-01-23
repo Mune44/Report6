@@ -2,6 +2,9 @@ package jp.ac.uryukyu.ie.e225744;
 import java.util.ArrayList;
 import java.util.Random;
 
+/*
+ * プレイヤーとディーラーの抽象クラス
+ */
 public abstract class Player {
     private ArrayList<Card> cards = new ArrayList<>();
     private Random random = new Random();
@@ -10,7 +13,7 @@ public abstract class Player {
     private boolean isBrackJack = false;
     
     /*
-     * デッキの生成
+     * デッキから一枚引き、引いたカードをListの中から消去する
      */
     public void draw(ArrayList<Card> deck) {
         int r = random.nextInt(deck.size());
@@ -19,7 +22,9 @@ public abstract class Player {
     }
 
     public abstract void act(ArrayList<Card> deck);
-
+    /*
+     * 手持ちのカードを確認する
+     */
     public void showCards() {
         for(Card c: cards) {
             System.out.println(c.getCard());
@@ -46,7 +51,9 @@ public abstract class Player {
             }
             score += card_num;
         }
-
+        /*
+         * Aを1と11どちらのスコアで使うかの判定
+         */
         for(int i=0;i<aceCardCount;i++) {
             if(score + 11 <= BORDER_SCORE) {
                 score += 11;
@@ -67,5 +74,8 @@ public abstract class Player {
     }
     public void setBust(boolean isBust) {
         this.isBust = isBust;
+    }
+    public void setCards(ArrayList<Card> cards) {
+        this.cards = cards;
     }
 }
